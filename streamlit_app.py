@@ -119,16 +119,23 @@ def main():
 
         with col1:
             st.subheader("Scatter Plot")
-            x_option = st.selectbox(
-                "Pilih kolom untuk sumbu X:",
-                options=species_data.columns[:-1],  # Semua kolom kecuali 'species'
-                index=0
-            )
-            y_option = st.selectbox(
-                "Pilih kolom untuk sumbu Y:",
-                options=species_data.columns[:-1],  # Semua kolom kecuali 'species'
-                index=1
-            )
+            col1, col2 = st.columns(2)
+
+            with col1:
+                st.subheader("Scatter Plot")
+                x_option = st.selectbox(
+                    "Pilih kolom untuk sumbu X:",
+                    options=species_data.columns[:-1],  # Semua kolom kecuali 'species'
+                    index=0
+                )
+
+            with col2:
+                st.subheader("Scatter Plot")
+                y_option = st.selectbox(
+                    "Pilih kolom untuk sumbu Y:",
+                    options=species_data.columns[:-1],  # Semua kolom kecuali 'species'
+                    index=1
+                )
 
             fig = px.scatter(
                 species_data, 
