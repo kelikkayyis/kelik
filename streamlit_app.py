@@ -14,8 +14,15 @@ st.set_page_config(
 st.markdown(
     """
     <style>
+    /* Mengubah warna sidebar */
+    .css-1lcbmhc {
+        background-color: #FFA500 !important; /* Oranye */
+    }
     .css-18e3th9 {
-        background-color: #FFA500 !important;
+        padding-top: 3rem !important;
+    }
+    .css-18ni7ap {
+        padding: 1.5rem 1rem 0 !important;
     }
     </style>
     """,
@@ -27,6 +34,9 @@ def main():
     iris = load_iris()
     iris_data = pd.DataFrame(iris.data, columns=iris.feature_names)
     iris_data['species'] = [iris.target_names[i] for i in iris.target]
+
+    # Menampilkan judul halaman utama
+    st.title("Visualisasi Data Iris")
 
     # Pilihan halaman dengan tabs
     st.sidebar.header("Navigasi")
