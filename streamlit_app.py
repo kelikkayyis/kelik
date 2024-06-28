@@ -1,16 +1,16 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 from sklearn.datasets import load_iris
 
-# Set theme to change sidebar color
+# Mengatur konfigurasi halaman
 st.set_page_config(
     page_title="Iris Data Visualisation",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS to change the color of the sidebar
+# Custom CSS untuk mengubah warna sidebar
 st.markdown(
     """
     <style>
@@ -39,7 +39,6 @@ def main():
     st.title("Visualisasi Data Iris")
 
     # Pilihan halaman dengan tabs
-    st.sidebar.header("Navigasi")
     tab = st.sidebar.radio("Pilih halaman:", ["Setosa", "Versicolor", "Virginica", "Show Data"])
 
     # Grafik untuk Setosa
@@ -48,20 +47,33 @@ def main():
         setosa_data = iris_data[iris_data['species'] == 'setosa']
         
         st.subheader("Scatter Plot")
-        fig, ax = plt.subplots()
-        ax.scatter(setosa_data['sepal length (cm)'], setosa_data['sepal width (cm)'], c='blue', label='Setosa')
-        ax.set_xlabel('Sepal Length (cm)')
-        ax.set_ylabel('Sepal Width (cm)')
-        ax.legend()
-        st.pyplot(fig)
+        fig = px.scatter(
+            setosa_data, 
+            x='sepal length (cm)', 
+            y='sepal width (cm)', 
+            color=px.Constant('Setosa'),
+            labels={'color': 'Species'},
+            title="Scatter Plot Sepal Setosa"
+        )
+        fig.update_traces(marker=dict(color='blue'))
+        st.plotly_chart(fig)
         
         st.subheader("Histogram")
-        fig, ax = plt.subplots()
-        ax.hist(setosa_data['petal length (cm)'], bins=10, color='blue', label='Setosa')
-        ax.set_xlabel('Petal Length (cm)')
-        ax.set_ylabel('Frequency')
-        ax.legend()
-        st.pyplot(fig)
+        x_option = st.selectbox(
+            "Pilih kolom untuk X-Axis:",
+            options=setosa_data.columns[:-1],  # Semua kolom kecuali 'species'
+            index=0
+        )
+        
+        fig = px.histogram(
+            setosa_data, 
+            x=x_option, 
+            nbins=10, 
+            title=f"Histogram of {x_option} for Setosa",
+            labels={x_option: x_option, 'count': 'Frequency'}
+        )
+        fig.update_traces(marker_color='blue')
+        st.plotly_chart(fig)
 
     # Grafik untuk Versicolor
     elif tab == "Versicolor":
@@ -69,20 +81,33 @@ def main():
         versicolor_data = iris_data[iris_data['species'] == 'versicolor']
         
         st.subheader("Scatter Plot")
-        fig, ax = plt.subplots()
-        ax.scatter(versicolor_data['sepal length (cm)'], versicolor_data['sepal width (cm)'], c='green', label='Versicolor')
-        ax.set_xlabel('Sepal Length (cm)')
-        ax.set_ylabel('Sepal Width (cm)')
-        ax.legend()
-        st.pyplot(fig)
+        fig = px.scatter(
+            versicolor_data, 
+            x='sepal length (cm)', 
+            y='sepal width (cm)', 
+            color=px.Constant('Versicolor'),
+            labels={'color': 'Species'},
+            title="Scatter Plot Sepal Versicolor"
+        )
+        fig.update_traces(marker=dict(color='green'))
+        st.plotly_chart(fig)
         
         st.subheader("Histogram")
-        fig, ax = plt.subplots()
-        ax.hist(versicolor_data['petal length (cm)'], bins=10, color='green', label='Versicolor')
-        ax.set_xlabel('Petal Length (cm)')
-        ax.set_ylabel('Frequency')
-        ax.legend()
-        st.pyplot(fig)
+        x_option = st.selectbox(
+            "Pilih kolom untuk X-Axis:",
+            options=versicolor_data.columns[:-1],  # Semua kolom kecuali 'species'
+            index=0
+        )
+        
+        fig = px.histogram(
+            versicolor_data, 
+            x=x_option, 
+            nbins=10, 
+            title=f"Histogram of {x_option} for Versicolor",
+            labels={x_option: x_option, 'count': 'Frequency'}
+        )
+        fig.update_traces(marker_color='green')
+        st.plotly_chart(fig)
 
     # Grafik untuk Virginica
     elif tab == "Virginica":
@@ -90,20 +115,33 @@ def main():
         virginica_data = iris_data[iris_data['species'] == 'virginica']
         
         st.subheader("Scatter Plot")
-        fig, ax = plt.subplots()
-        ax.scatter(virginica_data['sepal length (cm)'], virginica_data['sepal width (cm)'], c='red', label='Virginica')
-        ax.set_xlabel('Sepal Length (cm)')
-        ax.set_ylabel('Sepal Width (cm)')
-        ax.legend()
-        st.pyplot(fig)
+        fig = px.scatter(
+            virginica_data, 
+            x='sepal length (cm)', 
+            y='sepal width (cm)', 
+            color=px.Constant('Virginica'),
+            labels={'color': 'Species'},
+            title="Scatter Plot Sepal Virginica"
+        )
+        fig.update_traces(marker=dict(color='red'))
+        st.plotly_chart(fig)
         
         st.subheader("Histogram")
-        fig, ax = plt.subplots()
-        ax.hist(virginica_data['petal length (cm)'], bins=10, color='red', label='Virginica')
-        ax.set_xlabel('Petal Length (cm)')
-        ax.set_ylabel('Frequency')
-        ax.legend()
-        st.pyplot(fig)
+        x_option = st.selectbox(
+            "Pilih kolom untuk X-Axis:",
+            options=virginica_data.columns[:-1],  # Semua kolom kecuali 'species'
+            index=0
+        )
+        
+        fig = px.histogram(
+            virginica_data, 
+            x=x_option, 
+            nbins=10, 
+            title=f"Histogram of {x_option} for Virginica",
+            labels={x_option: x_option, 'count': 'Frequency'}
+        )
+        fig.update_traces(marker_color='red')
+        st.plotly_chart(fig)
 
     # Halaman untuk Show Data dengan filter
     elif tab == "Show Data":
