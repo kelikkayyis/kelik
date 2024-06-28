@@ -215,7 +215,6 @@ def main():
              (setosa, versicolor, virginica) berdasarkan sepal/petal \
             and length/width.')
 
-        st.header("Plant Features")
         col1, col2 = st.columns(2)
 
         with col1:
