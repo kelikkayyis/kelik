@@ -22,11 +22,8 @@ def main():
             st.sidebar.write("Usia:", usia)
             st.sidebar.write("Pekerjaan:", pekerjaan)
 
-    # Halaman utama
-    st.title("Visualisasi Data Iris")
-
     # Pilihan halaman
-    page = st.selectbox("Pilih jenis Iris:", ["Setosa", "Versicolor", "Virginica"])
+    page = st.selectbox("Pilih halaman:", ["Setosa", "Versicolor", "Virginica", "Show Data"])
 
     # Grafik untuk Setosa
     if page == "Setosa":
@@ -90,6 +87,66 @@ def main():
         ax.set_ylabel('Frequency')
         ax.legend()
         st.pyplot(fig)
+
+    # Halaman untuk Show Data dengan filter
+    elif page == "Show Data":
+        st.header("Show Data Iris")
+
+        # Filter species
+        species_tab = st.radio("Filter by Species:", options=["All", "Setosa", "Versicolor", "Virginica"])
+        if species_tab == "Setosa":
+            filtered_data = iris_data[iris_data['species'] == 'setosa']
+        elif species_tab == "Versicolor":
+            filtered_data = iris_data[iris_data['species'] == 'versicolor']
+        elif species_tab == "Virginica":
+            filtered_data = iris_data[iris_data['species'] == 'virginica']
+        else:
+            filtered_data = iris_data
+
+        # Filter numeric columns
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            min_sepal_length, max_sepal_length = st.slider(
+                "Sepal Length (cm)", 
+                float(filtered_data['sepal length (cm)'].min()), 
+                float(filtered_data['sepal length (cm)'].max()), 
+                (float(filtered_data['sepal length (cm)'].min()), float(filtered_data['sepal length (cm)'].max()))
+            )
+        
+        with col2:
+            min_sepal_width, max_sepal_width = st.slider(
+                "Sepal Width (cm)", 
+                float(filtered_data['sepal width (cm)'].min()), 
+                float(filtered_data['sepal width (cm)'].max()), 
+                (float(filtered_data['sepal width (cm)'].min()), float(filtered_data['sepal width (cm)'].max()))
+            )
+        
+        with col3:
+            min_petal_length, max_petal_length = st.slider(
+                "Petal Length (cm)", 
+                float(filtered_data['petal length (cm)'].min()), 
+                float(filtered_data['petal length (cm)'].max()), 
+                (float(filtered_data['petal length (cm)'].min()), float(filtered_data['petal length (cm)'].max()))
+            )
+        
+        with col4:
+            min_petal_width, max_petal_width = st.slider(
+                "Petal Width (cm)", 
+                float(filtered_data['petal width (cm)'].min()), 
+                float(filtered_data['petal width (cm)'].max()), 
+                (float(filtered_data['petal width (cm)'].min()), float(filtered_data['petal width (cm)'].max()))
+            )
+
+        # Apply filters
+        filtered_data = filtered_data[
+            (filtered_data['sepal length (cm)'] >= min_sepal_length) & (filtered_data['sepal length (cm)'] <= max_sepal_length) &
+            (filtered_data['sepal width (cm)'] >= min_sepal_width) & (filtered_data['sepal width (cm)'] <= max_sepal_width) &
+            (filtered_data['petal length (cm)'] >= min_petal_length) & (filtered_data['petal length (cm)'] <= max_petal_length) &
+            (filtered_data['petal width (cm)'] >= min_petal_width) & (filtered_data['petal width (cm)'] <= max_petal_width)
+        ]
+
+        st.write(filtered_data)
 
 if __name__ == '__main__':
     main()
