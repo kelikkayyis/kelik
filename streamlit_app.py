@@ -37,15 +37,12 @@ def main():
     iris_data = pd.DataFrame(iris.data, columns=iris.feature_names)
     iris_data['species'] = [iris.target_names[i] for i in iris.target]
 
-    # Menampilkan judul halaman utama
-    st.title("Visualisasi Data Iris")
-
     # Pilihan halaman dengan tabs
     tab = st.sidebar.radio("Pilih halaman:", ["Iris Data", "Setosa", "Versicolor", "Virginica", "Prediction"])
 
     # Halaman untuk Show Data dengan filter
     if tab == "Iris Data":
-        st.header("Show Data Iris")
+        st.header("Iris Dataset")
 
         # Filter species
         species_tab = st.radio("Filter by Species:", options=["All", "Setosa", "Versicolor", "Virginica"])
@@ -105,7 +102,7 @@ def main():
         
     # Grafik untuk Setosa
     elif tab == "Setosa":
-        st.header("Setosa")
+        st.header("Visualisasi Species Setosa")
         setosa_data = iris_data[iris_data['species'] == 'setosa']
         
         st.subheader("Scatter Plot")
@@ -139,7 +136,7 @@ def main():
 
     # Grafik untuk Versicolor
     elif tab == "Versicolor":
-        st.header("Versicolor")
+        st.header("Visualisasi Species Versicolor")
         versicolor_data = iris_data[iris_data['species'] == 'versicolor']
         
         st.subheader("Scatter Plot")
@@ -173,7 +170,7 @@ def main():
 
     # Grafik untuk Virginica
     elif tab == "Virginica":
-        st.header("Virginica")
+        st.header("Visualisasi Species Virginica")
         virginica_data = iris_data[iris_data['species'] == 'virginica']
         
         st.subheader("Scatter Plot")
@@ -213,9 +210,9 @@ def main():
                             2: {'name': 'Virginica', 'image': 'images/virginica.jpg'}
                         }
 
-        st.title('Classifying Iris Flowers')
-        st.markdown('Toy model to play to classify iris flowers into \
-             (setosa, versicolor, virginica) based on their sepal/petal \
+        st.title('Prediksi Bunga Iris')
+        st.markdown('Machine Learning model untuk memprediksi spesies bunga iris \
+             (setosa, versicolor, virginica) berdasarkan sepal/petal \
             and length/width.')
 
         st.header("Plant Features")
