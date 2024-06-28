@@ -38,7 +38,7 @@ def main():
     iris_data['species'] = [iris.target_names[i] for i in iris.target]
 
     # Pilihan halaman dengan tabs
-    tab = st.sidebar.radio("Pilih halaman:", ["Iris Data", "Setosa", "Versicolor", "Virginica", "Prediction"])
+    tab = st.sidebar.radio("Pilih halaman:", ["Iris Data", "Visualisasi", "Prediction"])
 
     # Halaman untuk Show Data dengan filter
     if tab == "Iris Data":
@@ -100,132 +100,82 @@ def main():
 
         st.write(filtered_data)
         
-    # Grafik untuk Setosa
-    elif tab == "Setosa":
-        st.header("Visualisasi Species Setosa")
-        setosa_data = iris_data[iris_data['species'] == 'setosa']
+    # Visualisasi Species dengan filter
+    elif tab == "Visualisasi":
+        st.header("Visualisasi Data Iris")
         
-        st.subheader("Scatter Plot")
-        fig = px.scatter(
-            setosa_data, 
-            x='sepal length (cm)', 
-            y='sepal width (cm)', 
-            color=px.Constant('Setosa'),
-            labels={'color': 'Species'},
-            title="Scatter Plot Sepal Setosa"
-        )
-        fig.update_traces(marker=dict(color='blue'))
-        st.plotly_chart(fig)
-        
-        st.subheader("Histogram")
-        x_option = st.selectbox(
-            "Pilih kolom untuk X-Axis:",
-            options=setosa_data.columns[:-1],  # Semua kolom kecuali 'species'
+        # Pilih spesies untuk visualisasi
+        species_option = st.selectbox(
+            "Pilih spesies:",
+            options=["Setosa", "Versicolor", "Virginica"],
             index=0
         )
         
-        fig = px.histogram(
-            setosa_data, 
-            x=x_option, 
-            nbins=10, 
-            title=f"Histogram of {x_option} for Setosa",
-            labels={x_option: x_option, 'count': 'Frequency'}
-        )
-        fig.update_traces(marker_color='blue')
-        st.plotly_chart(fig)
+        # Filter data berdasarkan spesies yang dipilih
+        species_data = iris_data[iris_data['species'] == species_option.lower()]
 
-    # Grafik untuk Versicolor
-    elif tab == "Versicolor":
-        st.header("Visualisasi Species Versicolor")
-        versicolor_data = iris_data[iris_data['species'] == 'versicolor']
-        
         st.subheader("Scatter Plot")
         fig = px.scatter(
-            versicolor_data, 
+            species_data, 
             x='sepal length (cm)', 
             y='sepal width (cm)', 
-            color=px.Constant('Versicolor'),
+            color=px.Constant(species_option),
             labels={'color': 'Species'},
-            title="Scatter Plot Sepal Versicolor"
+            title=f"Scatter Plot Sepal {species_option}"
         )
-        fig.update_traces(marker=dict(color='green'))
+        
+        # Tentukan warna untuk setiap spesies
+        if species_option == "Setosa":
+            color = 'blue'
+        elif species_option == "Versicolor":
+            color = 'green'
+        else:
+            color = 'red'
+        
+        fig.update_traces(marker=dict(color=color))
         st.plotly_chart(fig)
         
         st.subheader("Histogram")
         x_option = st.selectbox(
             "Pilih kolom untuk X-Axis:",
-            options=versicolor_data.columns[:-1],  # Semua kolom kecuali 'species'
+            options=species_data.columns[:-1],  # Semua kolom kecuali 'species'
             index=0
         )
         
         fig = px.histogram(
-            versicolor_data, 
+            species_data, 
             x=x_option, 
             nbins=10, 
-            title=f"Histogram of {x_option} for Versicolor",
+            title=f"Histogram of {x_option} for {species_option}",
             labels={x_option: x_option, 'count': 'Frequency'}
         )
-        fig.update_traces(marker_color='green')
-        st.plotly_chart(fig)
-
-    # Grafik untuk Virginica
-    elif tab == "Virginica":
-        st.header("Visualisasi Species Virginica")
-        virginica_data = iris_data[iris_data['species'] == 'virginica']
-        
-        st.subheader("Scatter Plot")
-        fig = px.scatter(
-            virginica_data, 
-            x='sepal length (cm)', 
-            y='sepal width (cm)', 
-            color=px.Constant('Virginica'),
-            labels={'color': 'Species'},
-            title="Scatter Plot Sepal Virginica"
-        )
-        fig.update_traces(marker=dict(color='red'))
-        st.plotly_chart(fig)
-        
-        st.subheader("Histogram")
-        x_option = st.selectbox(
-            "Pilih kolom untuk X-Axis:",
-            options=virginica_data.columns[:-1],  # Semua kolom kecuali 'species'
-            index=0
-        )
-        
-        fig = px.histogram(
-            virginica_data, 
-            x=x_option, 
-            nbins=10, 
-            title=f"Histogram of {x_option} for Virginica",
-            labels={x_option: x_option, 'count': 'Frequency'}
-        )
-        fig.update_traces(marker_color='red')
+        fig.update_traces(marker_color=color)
         st.plotly_chart(fig)
 
     # Prediction Iris Species
     elif tab == "Prediction":
         species_mapping = {
-                            0: {'name': 'Setosa', 'image': 'images/setosa.jpg'},
-                            1: {'name': 'Versicolor', 'image': 'images/versicolor.jpg'},
-                            2: {'name': 'Virginica', 'image': 'images/virginica.jpg'}
-                        }
+            0: {'name': 'Setosa', 'image': 'images/setosa.jpg'},
+            1: {'name': 'Versicolor', 'image': 'images/versicolor.jpg'},
+            2: {'name': 'Virginica', 'image': 'images/virginica.jpg'}
+        }
 
         st.title('Prediksi Bunga Iris')
         st.markdown('Machine Learning model untuk memprediksi spesies bunga iris \
              (setosa, versicolor, virginica) berdasarkan sepal/petal \
-            and length/width.')
+            dan length/width.')
 
         col1, col2 = st.columns(2)
 
         with col1:
             st.text("Sepal characteristics")
-            sepal_l = st.slider('Sepal lenght (cm)', 1.0, 8.0, 0.5)
-            sepal_w = st.slider('Sepal width (cm)', 2.0, 4.4, 0.5)
+            sepal_l = st.slider('Sepal lenght (cm)', 1.0, 8.0, 5.0)
+            sepal_w = st.slider('Sepal width (cm)', 2.0, 4.4, 3.0)
 
         with col2:
             st.text("Petal characteristics")
-            petal_l = st.slider('Petal lenght (cm)', 1.0, 7.0, 0.5)
-            petal_w = st.slider('Petal width (cm)', 0.1, 2.5, 0.5)
+            petal_l = st.slider('Petal lenght (cm)', 1.0, 7.0, 3.5)
+            petal_w = st.slider('Petal width (cm)', 0.1, 2.5, 1.0)
 
         st.text('')
         if st.button("Predict type of Iris"):
