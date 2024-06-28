@@ -1,7 +1,9 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import plotly.express as px
 from sklearn.datasets import load_iris
+from prediction import predict
 
 # Mengatur konfigurasi halaman
 st.set_page_config(
@@ -203,6 +205,35 @@ def main():
         fig.update_traces(marker_color='red')
         st.plotly_chart(fig)
 
+    # Prediction Iris Species
+    elif tab == "Prediction":
+        species_mapping = {0: 'Setosa', 1: 'Versicolor', 2: 'Virginica'}
+
+        st.title('Classifying Iris Flowers')
+        st.markdown('Toy model to play to classify iris flowers into \
+             (setosa, versicolor, virginica) based on their sepal/petal \
+            and length/width.')
+
+        st.header("Plant Features")
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.text("Sepal characteristics")
+            sepal_l = st.slider('Sepal lenght (cm)', 1.0, 8.0, 0.5)
+            sepal_w = st.slider('Sepal width (cm)', 2.0, 4.4, 0.5)
+
+        with col2:
+            st.text("Petal characteristics")
+            petal_l = st.slider('Petal lenght (cm)', 1.0, 7.0, 0.5)
+            petal_w = st.slider('Petal width (cm)', 0.1, 2.5, 0.5)
+
+        st.text('')
+        if st.button("Predict type of Iris"):
+            result = predict(np.array([[sepal_l, sepal_w, petal_l, petal_w]]))
+            species = species_mapping.get(result[0], "Unknown")
+            st.text(f"The predicted species is: {species}")
+
+        st.text('')
 
 if __name__ == '__main__':
     main()
