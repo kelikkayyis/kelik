@@ -114,43 +114,48 @@ def main():
         # Filter data berdasarkan spesies yang dipilih
         species_data = iris_data[iris_data['species'] == species_option.lower()]
 
-        st.subheader("Scatter Plot")
-        fig = px.scatter(
-            species_data, 
-            x='sepal length (cm)', 
-            y='sepal width (cm)', 
-            color=px.Constant(species_option),
-            labels={'color': 'Species'},
-            title=f"Scatter Plot Sepal {species_option}"
-        )
-        
-        # Tentukan warna untuk setiap spesies
-        if species_option == "Setosa":
-            color = 'blue'
-        elif species_option == "Versicolor":
-            color = 'green'
-        else:
-            color = 'red'
-        
-        fig.update_traces(marker=dict(color=color))
-        st.plotly_chart(fig)
-        
-        st.subheader("Histogram")
-        x_option = st.selectbox(
-            "Pilih kolom untuk X-Axis:",
-            options=species_data.columns[:-1],  # Semua kolom kecuali 'species'
-            index=0
-        )
-        
-        fig = px.histogram(
-            species_data, 
-            x=x_option, 
-            nbins=10, 
-            title=f"Histogram of {x_option} for {species_option}",
-            labels={x_option: x_option, 'count': 'Frequency'}
-        )
-        fig.update_traces(marker_color=color)
-        st.plotly_chart(fig)
+        # Layout untuk scatter plot dan histogram (dua kolom)
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.subheader("Scatter Plot")
+            fig = px.scatter(
+                species_data, 
+                x='sepal length (cm)', 
+                y='sepal width (cm)', 
+                color=px.Constant(species_option),
+                labels={'color': 'Species'},
+                title=f"Scatter Plot Sepal {species_option}"
+            )
+            
+            # Tentukan warna untuk setiap spesies
+            if species_option == "Setosa":
+                color = 'blue'
+            elif species_option == "Versicolor":
+                color = 'green'
+            else:
+                color = 'red'
+            
+            fig.update_traces(marker=dict(color=color))
+            st.plotly_chart(fig)
+
+        with col2:
+            st.subheader("Histogram")
+            x_option = st.selectbox(
+                "Pilih kolom untuk X-Axis:",
+                options=species_data.columns[:-1],  # Semua kolom kecuali 'species'
+                index=0
+            )
+            
+            fig = px.histogram(
+                species_data, 
+                x=x_option, 
+                nbins=10, 
+                title=f"Histogram of {x_option} for {species_option}",
+                labels={x_option: x_option, 'count': 'Frequency'}
+            )
+            fig.update_traces(marker_color=color)
+            st.plotly_chart(fig)
 
     # Prediction Iris Species
     elif tab == "Prediction":
