@@ -1,5 +1,7 @@
 import streamlit as st 
 import pandas as pd
+import requests
+from st_aggrid import AgGrid
 
 house = pd.read_csv('https://raw.githubusercontent.com/kelikkayyis/kelik/main/house_clean.csv')
 
