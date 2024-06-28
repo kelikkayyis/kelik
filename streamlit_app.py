@@ -44,7 +44,9 @@ def main():
     if tab == "Iris Data":
         st.header("Iris Dataset")
 
-        # Filter species
+        st.markdown('Kumpulan data bunga Iris atau yang dikenal dengan dataset bunga Iris Fisher adalah kumpulan data multivariat yang digunakan dan dipopulerkan oleh ahli statistik dan biologis Inggris Ronald Fisher dalam makalahnya tahun 1936 berjudul "Penggunaan Pengukuran Ganda dalam Masalah Taksonomi" sebagai contoh analisis diskriminan linear. Kadang-kadang disebut sebagai dataset bunga Iris Anderson karena data ini dikumpulkan oleh Edgar Anderson untuk mengukur variasi morfologis dari bunga Iris dari tiga spesies terkait. Dua dari tiga spesies dikumpulkan di Semenanjung Gaspé "semuanya dari padang rumput yang sama, dipetik pada hari yang sama, dan diukur pada waktu yang sama oleh orang yang sama dengan alat yang sama." \n \n Dataset ini terdiri dari 50 sampel dari masing-masing tiga spesies Iris (Iris setosa, Iris virginica, dan Iris versicolor). Empat fitur diukur dari setiap sampel: panjang dan lebar sepal dan petal, dalam satuan sentimeter. Berdasarkan kombinasi dari keempat fitur ini, Fisher mengembangkan model diskriminan linear untuk membedakan spesies satu dengan yang lain. Makalah Fisher ini diterbitkan dalam Annals of Eugenics (sekarang Annals of Human Genetics).')
+
+
         # Pilih spesies untuk visualisasi
         species_tab = st.selectbox(
             "Pilih spesies:",
