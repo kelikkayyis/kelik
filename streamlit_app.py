@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from prediction import predict
 
+species_mapping = {0: 'Setosa', 1: 'Versicolor', 2: 'Virginica'}
+
 st.title('Classifying Iris Flowers')
 st.markdown('Toy model to play to classify iris flowers into \
      (setosa, versicolor, virginica) based on their sepal/petal \
@@ -23,10 +25,8 @@ with col2:
 
 st.text('')
 if st.button("Predict type of Iris"):
-    result = predict(
-        np.array([[sepal_l, sepal_w, petal_l, petal_w]]))
-    st.text(result[0])
+    result = predict(np.array([[sepal_l, sepal_w, petal_l, petal_w]]))
+    species = species_mapping.get(result[0], "Unknown")
+    st.text(f"The predicted species is: {species}")
 
-
-st.text('')
 st.text('')
