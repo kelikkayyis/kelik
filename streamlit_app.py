@@ -241,7 +241,7 @@ def main():
             st.text(f"The predicted species is: {species_name}")
             
             if species_image:
-                st.image(species_image, caption=f"{species_name} flower", use_column_width=True)
+                st.image(species_image, caption=f"{species_name} flower", use_column_width=False)
                 st.text('')
 
 if __name__ == '__main__':
