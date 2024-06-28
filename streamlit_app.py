@@ -45,7 +45,13 @@ def main():
         st.header("Iris Dataset")
 
         # Filter species
-        species_tab = st.radio("Filter by Species:", options=["All", "Setosa", "Versicolor", "Virginica"])
+        # Pilih spesies untuk visualisasi
+        species_tab = st.selectbox(
+            "Pilih spesies:",
+            options=["All", "Setosa", "Versicolor", "Virginica"],
+            index=0
+        )
+        # species_tab = st.radio("Filter by Species:", options=["All", "Setosa", "Versicolor", "Virginica"])
         if species_tab == "Setosa":
             filtered_data = iris_data[iris_data['species'] == 'setosa']
         elif species_tab == "Versicolor":
