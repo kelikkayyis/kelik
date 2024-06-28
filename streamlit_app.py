@@ -3,30 +3,37 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.datasets import load_iris
 
+# Set theme to change sidebar color
+st.set_page_config(
+    page_title="Iris Data Visualisation",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Custom CSS to change the color of the sidebar
+st.markdown(
+    """
+    <style>
+    .css-18e3th9 {
+        background-color: #FFA500 !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 def main():
     # Load dataset Iris
     iris = load_iris()
     iris_data = pd.DataFrame(iris.data, columns=iris.feature_names)
     iris_data['species'] = [iris.target_names[i] for i in iris.target]
 
-    # Sidebar untuk form data diri
-    st.sidebar.header("Data Diri")
-    with st.sidebar.form("Data Diri"):
-        nama = st.text_input("Nama:")
-        usia = st.number_input("Usia:", min_value=1, max_value=120)
-        pekerjaan = st.text_input("Pekerjaan:")
-        submit_button = st.form_submit_button("Submit")
-
-        if submit_button:
-            st.sidebar.write("Nama:", nama)
-            st.sidebar.write("Usia:", usia)
-            st.sidebar.write("Pekerjaan:", pekerjaan)
-
-    # Pilihan halaman
-    page = st.selectbox("Pilih halaman:", ["Setosa", "Versicolor", "Virginica", "Show Data"])
+    # Pilihan halaman dengan tabs
+    st.sidebar.header("Navigasi")
+    tab = st.sidebar.radio("Pilih halaman:", ["Setosa", "Versicolor", "Virginica", "Show Data"])
 
     # Grafik untuk Setosa
-    if page == "Setosa":
+    if tab == "Setosa":
         st.header("Setosa")
         setosa_data = iris_data[iris_data['species'] == 'setosa']
         
@@ -47,7 +54,7 @@ def main():
         st.pyplot(fig)
 
     # Grafik untuk Versicolor
-    elif page == "Versicolor":
+    elif tab == "Versicolor":
         st.header("Versicolor")
         versicolor_data = iris_data[iris_data['species'] == 'versicolor']
         
@@ -68,7 +75,7 @@ def main():
         st.pyplot(fig)
 
     # Grafik untuk Virginica
-    elif page == "Virginica":
+    elif tab == "Virginica":
         st.header("Virginica")
         virginica_data = iris_data[iris_data['species'] == 'virginica']
         
@@ -89,7 +96,7 @@ def main():
         st.pyplot(fig)
 
     # Halaman untuk Show Data dengan filter
-    elif page == "Show Data":
+    elif tab == "Show Data":
         st.header("Show Data Iris")
 
         # Filter species
