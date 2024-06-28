@@ -207,7 +207,11 @@ def main():
 
     # Prediction Iris Species
     elif tab == "Prediction":
-        species_mapping = {0: 'Setosa', 1: 'Versicolor', 2: 'Virginica'}
+        species_mapping = {
+                            0: {'name': 'Setosa', 'image': 'images/setosa.jpg'},
+                            1: {'name': 'Versicolor', 'image': 'images/versicolor.jpg'},
+                            2: {'name': 'Virginica', 'image': 'images/virginica.jpg'}
+                        }
 
         st.title('Classifying Iris Flowers')
         st.markdown('Toy model to play to classify iris flowers into \
@@ -230,10 +234,15 @@ def main():
         st.text('')
         if st.button("Predict type of Iris"):
             result = predict(np.array([[sepal_l, sepal_w, petal_l, petal_w]]))
-            species = species_mapping.get(result[0], "Unknown")
-            st.text(f"The predicted species is: {species}")
-
-        st.text('')
+            species_info = species_mapping.get(result[0], {"name": "Unknown", "image": None})
+            species_name = species_info['name']
+            species_image = species_info['image']
+            
+            st.text(f"The predicted species is: {species_name}")
+            
+            if species_image:
+                st.image(species_image, caption=f"{species_name} flower", use_column_width=True)
+                st.text('')
 
 if __name__ == '__main__':
     main()
