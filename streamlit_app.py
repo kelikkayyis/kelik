@@ -119,13 +119,24 @@ def main():
 
         with col1:
             st.subheader("Scatter Plot")
+            x_option = st.selectbox(
+                "Pilih kolom untuk sumbu X:",
+                options=species_data.columns[:-1],  # Semua kolom kecuali 'species'
+                index=0
+            )
+            y_option = st.selectbox(
+                "Pilih kolom untuk sumbu Y:",
+                options=species_data.columns[:-1],  # Semua kolom kecuali 'species'
+                index=1
+            )
+
             fig = px.scatter(
                 species_data, 
-                x='sepal length (cm)', 
-                y='sepal width (cm)', 
+                x=x_option, 
+                y=y_option, 
                 color=px.Constant(species_option),
                 labels={'color': 'Species'},
-                title=f"Scatter Plot Sepal {species_option}"
+                title=f"Scatter Plot {x_option} vs {y_option} for {species_option}"
             )
             
             # Tentukan warna untuk setiap spesies
