@@ -220,9 +220,9 @@ def main():
     # Visualisasi Analysis
     elif tab == "Analisis":
         # Display headers
-        st.header("Visualisasi Decision Tree")
+        st.header("Klasifikasi Spesies Bunga Iris dengan Decision Tree")
 
-        st.markdown('Ini adalah classifier pohon keputusan untuk dataset Iris. Pohon ini dimulai dengan simpul akar yang membagi berdasarkan panjang kelopak *(petal length)* <= 2,35. Jika benar, sampel langsung diklasifikasikan sebagai setosa. Jika salah, pohon ini membagi lebih lanjut berdasarkan  lebar kelopak *(petal width)* <= 1,7, mengarah ke klasifikasi yang lebih spesifik. Pohon ini menggunakan kondisi pada panjang kelopak, lebar kelopak, dan lebar sepal untuk mengklasifikasikan sampel ke dalam tiga kelas: setosa, versicolor, dan virginica, dengan nilai ketidakmurnian gini dan ukuran sampel disediakan di setiap simpul.')
+        st.markdown('Klasifikasi pohon keputusan untuk dataset Iris. Pohon ini dimulai dengan simpul akar yang membagi berdasarkan panjang kelopak *(petal length)* <= 2,35. Jika benar, sampel langsung diklasifikasikan sebagai setosa. Jika salah, pohon ini membagi lebih lanjut berdasarkan  lebar kelopak *(petal width)* <= 1,7, mengarah ke klasifikasi yang lebih spesifik. Pohon ini menggunakan kondisi pada panjang kelopak, lebar kelopak, dan lebar sepal untuk mengklasifikasikan sampel ke dalam tiga kelas: setosa, versicolor, dan virginica, dengan nilai ketidakmurnian gini dan ukuran sampel disediakan di setiap simpul.')
 
         # Load image directly using Streamlit
         image_summary = st.image('decision_tree.png', caption='Decision Tree Visualization', use_column_width=True)
