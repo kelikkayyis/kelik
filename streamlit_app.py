@@ -38,10 +38,10 @@ def main():
     iris_data['species'] = [iris.target_names[i] for i in iris.target]
 
     # Pilihan halaman dengan tabs
-    tab = st.sidebar.radio("Pilih halaman:", ["Iris Data", "Visualisasi", "Analisis", "Prediction"])
+    tab = st.sidebar.radio("Pilih halaman:", ["Iris Dataset", "Visualisasi", "Analisis", "Prediction"])
 
     # Halaman untuk Show Data dengan filter
-    if tab == "Iris Data":
+    if tab == "Iris Dataset":
         st.header("Iris Dataset")
 
         st.markdown('Dataset bunga Iris, yang dikenal sebagai dataset bunga Iris Fisher, merupakan kumpulan data multivariat yang dipopulerkan oleh Ronald Fisher dalam makalah tahun 1936. Data ini kadang-kadang disebut juga sebagai dataset bunga Iris Anderson karena dikumpulkan oleh Edgar Anderson untuk mengukur variasi morfologis dari tiga spesies Iris terkait. Setiap spesies (Iris setosa, Iris virginica, dan Iris versicolor) memiliki 50 sampel, dengan empat fitur diukur dari masing-masing sampel: panjang dan lebar sepal serta petal, dalam satuan sentimeter. Fisher menggunakan data ini untuk mengembangkan model diskriminan linear yang membedakan spesies berdasarkan fitur-fitur ini, dengan makalahnya diterbitkan dalam Annals of Eugenics (sekarang Annals of Human Genetics).')
