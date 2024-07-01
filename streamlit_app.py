@@ -39,7 +39,7 @@ def main():
     iris_data['species'] = [iris.target_names[i] for i in iris.target]
 
     # Pilihan halaman dengan tabs
-    st.sidebar.image("lpdp.png")
+    st.sidebar.image("lpdp.png", width=150)
     tab = st.sidebar.radio("Pilih halaman:", ["Iris Dataset", "Visualisasi", "Analisis", "Prediksi"])
 
     # Halaman untuk Show Data dengan filter
