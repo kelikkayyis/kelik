@@ -5,7 +5,7 @@ import pickle
 
 # Fungsi untuk prediksi
 def predict(input_data):
-    clf = joblib.load("iris_xgb.pkl")  # Pastikan path benar
+    clf = pickle.load("iris_xgb.pkl")  # Pastikan path benar
     return clf.predict(input_data)
 
 # Definisikan species untuk hasil prediksi
