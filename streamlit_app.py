@@ -221,7 +221,7 @@ def main():
                 st.text('')
 
     # Visualisasi Analysis
-    elif tab == "Analysis":
+    elif tab == "Analisis":
         st.header("Visualisasi Decision Tree")
 
 if __name__ == '__main__':
