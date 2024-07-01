@@ -38,7 +38,7 @@ def main():
     iris_data['species'] = [iris.target_names[i] for i in iris.target]
 
     # Pilihan halaman dengan tabs
-    tab = st.sidebar.radio("Pilih halaman:", ["Iris Dataset", "Visualisasi", "Analisis", "Prediction"])
+    tab = st.sidebar.radio("Pilih halaman:", ["Iris Dataset", "Visualisasi", "Analisis", "Prediksi"])
 
     # Halaman untuk Show Data dengan filter
     if tab == "Iris Dataset":
@@ -181,7 +181,7 @@ def main():
             st.plotly_chart(fig)
 
     # Prediction Iris Species
-    elif tab == "Prediction":
+    elif tab == "Prediksi":
         species_mapping = {
             0: {'name': 'Setosa', 'image': 'images/setosa.jpg'},
             1: {'name': 'Versicolor', 'image': 'images/versicolor.jpg'},
@@ -189,9 +189,8 @@ def main():
         }
 
         st.title('Prediksi Bunga Iris')
-        st.markdown('Machine Learning model untuk memprediksi spesies bunga iris \
-             (setosa, versicolor, virginica) berdasarkan sepal/petal \
-            dan length/width.')
+        st.markdown('Dengan menggunakan machine learning model (Decision Tree) dilakukan prediksi spesies bunga iris \
+             (setosa, versicolor, virginica) berdasarkan sepal/petal dan length/width.')
 
         col1, col2 = st.columns(2)
 
