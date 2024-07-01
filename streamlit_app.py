@@ -220,12 +220,9 @@ def main():
                 st.image(species_image, caption=f"{species_name} flower", use_column_width=False)
                 st.text('')
 
-    # Prediction Analysis
+    # Visualisasi Analysis
     elif tab == "Analysis":
-        st.header("Decison Tree Analysis")
-        st.title("Decision Tree Analysis for Iris Flowers Summary Plot")
-        image_summary = Image.open('decision_tree.png')  
-        st.image(image_summary, use_column_width=True)
+        st.header("Visualisasi Decision Tree")
 
 if __name__ == '__main__':
     main()
