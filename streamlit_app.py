@@ -222,8 +222,8 @@ def main():
 
     # Prediction Analysis
     elif tab == "Analysis":
-        st.title("Decision Tree Analysis for Iris Flowers")
-        st.header("Decison Tree Summary Plot)")
+        st.header("Decison Tree Analysis")
+        st.title("Decision Tree Analysis for Iris Flowers Summary Plot")
         image_summary = Image.open('decision_tree.png')  
         st.image(image_summary, use_column_width=True)
 
