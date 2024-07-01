@@ -188,7 +188,7 @@ def main():
             2: {'name': 'Virginica', 'image': 'images/virginica.jpg'}
         }
 
-        st.title('Prediksi Bunga Iris')
+        st.header('Prediksi Bunga Iris')
         st.markdown('Dengan menggunakan machine learning model (Decision Tree) dilakukan prediksi spesies bunga iris \
              (setosa, versicolor, virginica) berdasarkan sepal/petal dan length/width.')
 
