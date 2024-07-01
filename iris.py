@@ -1,11 +1,11 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-import joblib
+import pickle
 
 # Fungsi untuk prediksi
 def predict(input_data):
-    clf = joblib.load("iris_model.sav")  # Pastikan path benar
+    clf = joblib.load("iris_xgb.pkl")  # Pastikan path benar
     return clf.predict(input_data)
 
 # Definisikan species untuk hasil prediksi
