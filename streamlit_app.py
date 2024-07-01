@@ -205,13 +205,13 @@ def main():
             petal_w = st.slider('Petal width (cm)', 0.1, 2.5, 1.0)
 
         st.text('')
-        if st.button("Predict type of Iris"):
+        if st.button("Prediksi tipe bunga Iris"):
             result = predict(np.array([[sepal_l, sepal_w, petal_l, petal_w]]))
             species_info = species_mapping.get(result[0], {"name": "Unknown", "image": None})
             species_name = species_info['name']
             species_image = species_info['image']
             
-            st.text(f"The predicted species is: {species_name}")
+            st.text(f"Prediksi spesies adalah: {species_name}")
             
             if species_image:
                 st.image(species_image, caption=f"{species_name} flower", use_column_width=False)
