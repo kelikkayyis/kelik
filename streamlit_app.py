@@ -43,6 +43,15 @@ def main():
     st.sidebar.text("")
     tab = st.sidebar.radio("Pilih halaman:", ["Iris Dataset", "Visualisasi", "Analisis", "Prediksi"])
 
+    st.sidebar.markdown(
+        """
+        <div style='position: fixed; bottom: 0; text-align: center; width: 100%;'>
+            <p>Author: IT LPDP</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    
     # Halaman untuk Show Data dengan filter
     if tab == "Iris Dataset":
         st.header("Iris Dataset")
