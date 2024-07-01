@@ -4,7 +4,6 @@ import numpy as np
 import plotly.express as px
 from sklearn.datasets import load_iris
 from prediction import predict
-from PIL import Image
 
 # Mengatur konfigurasi halaman
 st.set_page_config(
@@ -222,10 +221,12 @@ def main():
 
     # Visualisasi Analysis
     elif tab == "Analisis":
+        # Load image directly using Streamlit
+        image_summary = st.image('decision_tree.png', caption='Decision Tree Visualization', use_column_width=True)
+
+        # Display headers
         st.header("Visualisasi Decision Tree")
         st.header("Plot Tree")
-        image_summary = Image.open('decison_tree.png')  
-        st.image(image_summary, use_column_width=True)
 
 if __name__ == '__main__':
     main()
