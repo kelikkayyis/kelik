@@ -45,13 +45,13 @@ def main():
 
     st.sidebar.markdown(
         """
-        <div style='position: fixed; bottom: 0; text-align: center; width: 100%;'>
+        <div style='position: fixed; bottom: 0; text-align: left; width: 100%;'>
             <p>Author: IT LPDP</p>
         </div>
         """,
         unsafe_allow_html=True
     )
-    
+
     # Halaman untuk Show Data dengan filter
     if tab == "Iris Dataset":
         st.header("Iris Dataset")
