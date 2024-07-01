@@ -7,30 +7,30 @@ from prediction import predict
 
 # Mengatur konfigurasi halaman
 st.set_page_config(
-    page_title="Iris Data Visualisation",
+    page_title="Iris Data Analisis",
     page_icon="lpdp.png",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS untuk mengubah warna sidebar
-st.markdown(
-    """
-    <style>
-    /* Mengubah warna sidebar */
-    .css-1lcbmhc {
-        background-color: #FFA500 !important; /* Oranye */
-    }
-    .css-18e3th9 {
-        padding-top: 3rem !important;
-    }
-    .css-18ni7ap {
-        padding: 1.5rem 1rem 0 !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+# # Custom CSS untuk mengubah warna sidebar
+# st.markdown(
+#     """
+#     <style>
+#     /* Mengubah warna sidebar */
+#     .css-1lcbmhc {
+#         background-color: #FFA500 !important; /* Oranye */
+#     }
+#     .css-18e3th9 {
+#         padding-top: 3rem !important;
+#     }
+#     .css-18ni7ap {
+#         padding: 1.5rem 1rem 0 !important;
+#     }
+#     </style>
+#     """,
+#     unsafe_allow_html=True
+# )
 
 def main():
     # Load dataset Iris
