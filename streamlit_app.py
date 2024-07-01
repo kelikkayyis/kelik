@@ -8,6 +8,7 @@ from prediction import predict
 # Mengatur konfigurasi halaman
 st.set_page_config(
     page_title="Iris Data Visualisation",
+    page_icon="lpdp.png",
     layout="wide",
     initial_sidebar_state="expanded"
 )
