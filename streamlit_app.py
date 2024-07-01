@@ -46,7 +46,6 @@ def main():
 
         st.markdown('Dataset bunga Iris, yang dikenal sebagai dataset bunga Iris Fisher, merupakan kumpulan data multivariat yang dipopulerkan oleh Ronald Fisher dalam makalah tahun 1936. Data ini kadang-kadang disebut juga sebagai dataset bunga Iris Anderson karena dikumpulkan oleh Edgar Anderson untuk mengukur variasi morfologis dari tiga spesies Iris terkait. Setiap spesies (Iris setosa, Iris virginica, dan Iris versicolor) memiliki 50 sampel, dengan empat fitur diukur dari masing-masing sampel: panjang dan lebar sepal serta petal, dalam satuan sentimeter. Fisher menggunakan data ini untuk mengembangkan model diskriminan linear yang membedakan spesies berdasarkan fitur-fitur ini, dengan makalahnya diterbitkan dalam Annals of Eugenics (sekarang Annals of Human Genetics).')
 
-
         # Pilih spesies untuk visualisasi
         species_tab = st.selectbox(
             "Pilih spesies:",
@@ -223,6 +222,8 @@ def main():
     elif tab == "Analisis":
         # Display headers
         st.header("Visualisasi Decision Tree")
+
+        st.markdown('Ini adalah classifier pohon keputusan untuk dataset Iris. Pohon ini dimulai dengan simpul akar yang membagi berdasarkan panjang kelopak *(petal length)* <= 2,35. Jika benar, sampel langsung diklasifikasikan sebagai setosa. Jika salah, pohon ini membagi lebih lanjut berdasarkan  lebar kelopak *(petal width)* <= 1,7, mengarah ke klasifikasi yang lebih spesifik. Pohon ini menggunakan kondisi pada panjang kelopak, lebar kelopak, dan lebar sepal untuk mengklasifikasikan sampel ke dalam tiga kelas: setosa, versicolor, dan virginica, dengan nilai ketidakmurnian gini dan ukuran sampel disediakan di setiap simpul.')
 
         # Load image directly using Streamlit
         image_summary = st.image('decision_tree.png', caption='Decision Tree Visualization', use_column_width=True)
