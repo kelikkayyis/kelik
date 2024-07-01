@@ -6,4 +6,4 @@ matplotlib
 plotly
 scikit-learn
 joblib
-keras
+tensorflow
