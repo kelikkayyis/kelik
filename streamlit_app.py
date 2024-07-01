@@ -223,6 +223,9 @@ def main():
     # Visualisasi Analysis
     elif tab == "Analisis":
         st.header("Visualisasi Decision Tree")
+        st.header("Plot Tree")
+        image_summary = Image.open('decison_tree.png')  
+        st.image(image_summary, use_column_width=True)
 
 if __name__ == '__main__':
     main()
