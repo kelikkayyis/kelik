@@ -38,7 +38,7 @@ def main():
     iris_data['species'] = [iris.target_names[i] for i in iris.target]
 
     # Pilihan halaman dengan tabs
-    tab = st.sidebar.radio("Pilih halaman:", ["Iris Data", "Visualisasi", "Prediction", "Analisis"])
+    tab = st.sidebar.radio("Pilih halaman:", ["Iris Data", "Visualisasi", "Analisis", "Prediction"])
 
     # Halaman untuk Show Data dengan filter
     if tab == "Iris Data":
