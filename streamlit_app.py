@@ -221,12 +221,11 @@ def main():
 
     # Visualisasi Analysis
     elif tab == "Analisis":
-        # Load image directly using Streamlit
-        image_summary = st.image('decision_tree.png', caption='Decision Tree Visualization', use_column_width=True)
-
         # Display headers
         st.header("Visualisasi Decision Tree")
-        st.header("Plot Tree")
+
+        # Load image directly using Streamlit
+        image_summary = st.image('decision_tree.png', caption='Decision Tree Visualization', use_column_width=True)
 
 if __name__ == '__main__':
     main()
