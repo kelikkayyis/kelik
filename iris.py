@@ -1,31 +1,36 @@
-#import library needed
 import pandas as pd
-import streamlit as st 
-import pickle
 import numpy as np
-from prediction_iris import predict
+import streamlit as st
+import joblib
 
-# Load the best model
+# Fungsi untuk prediksi
+def predict(input_data):
+    clf = joblib.load("iris_model.sav")  # Pastikan path benar
+    return clf.predict(input_data)
+
+# Definisikan species untuk hasil prediksi
 species = ['setosa', 'versicolor', 'virginica']
 
+# Judul aplikasi
 st.title("Iris Flower Classification")
-st.write("This app correctly classifies iris flower among 3 possible species")
+st.write("This app classifies iris flower among 3 possible species.")
 
-# Creating Sidebar for inputs
+# Sidebar untuk input
 st.sidebar.title("Inputs")
-sepal_length = st.sidebar.number_input("sepal length (cm)", 4.3, 7.9, 5.0)
-sepal_width = st.sidebar.number_input("sepal width (cm)", 2.0, 4.4, 3.6)
-petal_length = st.sidebar.number_input("petal length (cm)", 1.0, 6.9, 1.4)
-petal_width = st.sidebar.number_input("petal width (cm)", 0.1, 2.5, 0.2)
+sepal_length = st.sidebar.number_input("Sepal length (cm)", 4.3, 7.9, 5.0)
+sepal_width = st.sidebar.number_input("Sepal width (cm)", 2.0, 4.4, 3.6)
+petal_length = st.sidebar.number_input("Petal length (cm)", 1.0, 6.9, 1.4)
+petal_width = st.sidebar.number_input("Petal width (cm)", 0.1, 2.5, 0.2)
 
-# Button to trigger prediction
+# Tombol prediksi
 if st.button("Predict"):
-# Getting Prediction from model
+    # Buat array input
     inp = np.array([sepal_length, sepal_width, petal_length, petal_width])
     inp = np.expand_dims(inp, axis=0)
+    
+    # Prediksi
     prediction = predict(inp)
 
-# Show Results when the button is clicked
+    # Tampilkan hasil
     result = species[np.argmax(prediction)]
-    st.write("**This flower belongs to " + result + " class**")
-
+    st.write("**This flower belongs to the " + result + " class**")
