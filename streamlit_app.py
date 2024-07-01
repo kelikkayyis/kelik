@@ -4,6 +4,7 @@ import numpy as np
 import plotly.express as px
 from sklearn.datasets import load_iris
 from prediction import predict
+from PIL import Image
 
 # Mengatur konfigurasi halaman
 st.set_page_config(
@@ -38,7 +39,7 @@ def main():
     iris_data['species'] = [iris.target_names[i] for i in iris.target]
 
     # Pilihan halaman dengan tabs
-    tab = st.sidebar.radio("Pilih halaman:", ["Iris Data", "Visualisasi", "Prediction"])
+    tab = st.sidebar.radio("Pilih halaman:", ["Iris Data", "Visualisasi", "Prediction", "Analisis"])
 
     # Halaman untuk Show Data dengan filter
     if tab == "Iris Data":
@@ -218,6 +219,12 @@ def main():
             if species_image:
                 st.image(species_image, caption=f"{species_name} flower", use_column_width=False)
                 st.text('')
+
+    # Prediction Analysis
+    elif tab == "Analysis":
+        st.header("Decison Tree Summary Plot)")
+        image_summary = Image.open('decision_tree.png')  
+        st.image(image_summary, use_column_width=True)
 
 if __name__ == '__main__':
     main()
