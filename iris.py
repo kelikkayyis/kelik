@@ -3,11 +3,9 @@ import pandas as pd
 import streamlit as st 
 import pickle
 import numpy as np
+from prediction_iris import predict
 
 # Load the best model
-with open('iris_model.pkl', 'rb') as f:
-    model = pickle.load(f)
-
 species = ['setosa', 'versicolor', 'virginica']
 
 st.title("Iris Flower Classification")
@@ -25,7 +23,7 @@ if st.button("Predict"):
 # Getting Prediction from model
     inp = np.array([sepal_length, sepal_width, petal_length, petal_width])
     inp = np.expand_dims(inp, axis=0)
-    prediction = model.predict(inp)
+    prediction = predict(inp)
 
 # Show Results when the button is clicked
     result = species[np.argmax(prediction)]
